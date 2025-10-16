@@ -2,6 +2,7 @@ from googleapiclient.discovery import build
 import json
 import dotenv
 import os
+import sys
 import time
 # -------------------------------
 # CONFIGURATION
@@ -98,8 +99,11 @@ def get_video_details(video_ids, channel_name):
 
 
 def main():
+    if (len(sys.argv) < 2):
+        output_file = "youtube_channels_data.json"
+    else:
+        output_file = sys.argv[1]
     all_data = []
-    output_file = "youtube_channels_data.json"
     
     for given_channel_id in CHANNEL_IDS:
         try:
